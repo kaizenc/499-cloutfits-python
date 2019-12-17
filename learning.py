@@ -13,10 +13,11 @@ Intra Outfit Similarity: How well outfits work within themselves
 Inter Outfit Similarity: How well outfits work with a user's taste
     * Rank a user's preferred concepts + styles, rank a fit higher based on its items + concepts
 '''
+URI = 'mongodb+srv://user_1:pass_1@cluster0-eqftc.mongodb.net/test'
 
 
 def pull_all_ratings():
-    c = pymongo.MongoClient()
+    c = pymongo.MongoClient(URI)
     db = c.cloutfits
     users = db.users
     ratings = {}
@@ -60,7 +61,7 @@ def make_item_prediction(u_id, i_id, model):
 
 
 def pull_user_outfits(u_id):
-    c = pymongo.MongoClient()
+    c = pymongo.MongoClient(URI)
     db = c.cloutfits
     users = db.users
     current_user = users.find_one({"username": u_id})
@@ -110,7 +111,7 @@ def users_preferences(favorites, items):
 
 
 def make_outfit_prediction(u_id, model, limit):
-    c = pymongo.MongoClient()
+    c = pymongo.MongoClient(URI)
     db = c.cloutfits
     all_items = {x['id']: x for x in list(db.items.find())}
     unique_items = []
