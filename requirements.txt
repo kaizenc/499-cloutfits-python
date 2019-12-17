@@ -1,0 +1,7 @@
+git+https://github.com/gbolmier/funk-svd
+pandas
+numpy
+numba # sub-requirement of funk-svd
+requests
+pymongo
+pickle-mixin
